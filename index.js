@@ -78,8 +78,8 @@ app.delete("/api/v1/delete-user", async (req, res) => {
 
 //creating notes
 app.post("/api/v1/create-notes", async (req, res) => {
-  const { title, description, userId, Date } = req.body;
-  const new_note = await createNote(title, description, userId, Date);
+  const { title, decripition, userId, Date } = req.body;
+  const new_note = await createNote(title, decripition, userId, Date);
   res.json({ message: "Notes saved", data: { new_note } });
 });
 
@@ -136,6 +136,6 @@ app.delete("/api/v1/delete-note", async (req, res) => {
   res.json({ message: "Deleted" });
 });
 
-app.listen(port, () => {
-  console.log(`listening on ${port}`);
+app.listen(3000, () => {
+  console.log(`listening on 3000`);
 });
