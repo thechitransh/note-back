@@ -136,6 +136,6 @@ app.delete("/api/v1/delete-note", async (req, res) => {
   res.json({ message: "Deleted" });
 });
 
-app.listen(3000, () => {
-  console.log(`listening on 3000`);
+app.listen(port, () => {
+  console.log(`listening on ${port}`);
 });
