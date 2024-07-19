@@ -35,7 +35,7 @@ app.post("/api/v1/login", async (req, res) => {
   if (!current_user) {
     return res.status(404).json({ message: "Invalid Credentials" });
   }
-  res.json({ message: "OK", data: { current_user } });
+  res.json({ message: "Login Successful", data: { current_user } });
 });
 //signup
 app.post("/api/v1/signup", async (req, res) => {
@@ -87,26 +87,6 @@ app.post("/api/v1/create-notes", async (req, res) => {
 app.get("/api/v1/note", Auth, async (req, res) => {
   const { noteid } = req.query;
   const new_note = await findNotesById(noteid);
-  res.json({ message: "Found", data: { new_note } });
-});
-
-//get notes by title
-app.get("/api/v1/note-title", async (req, res) => {
-  const { email } = req.body;
-  const { title } = req.query;
-  const new_note = await findeNotesByTitle(email, title);
-  res.json({ message: "Found", data: { new_note } });
-});
-
-//get notes by title and description
-app.get("/api/v1/note-title-description", async (req, res) => {
-  const { email } = req.body;
-  const { title, description } = req.query;
-  const new_note = await findeNotesByTitleDescription(
-    email,
-    title,
-    description
-  );
   res.json({ message: "Found", data: { new_note } });
 });
 
