@@ -24,6 +24,7 @@ const {
   updatePassword,
   login,
   signup,
+  googleLogin,
 } = require("./controllers/UserController");
 
 const port = process.env.PORT || 4000;
@@ -41,7 +42,7 @@ app.post("/api/v1/login", async (req, res) => {
 app.post("/api/v1/signup", async (req, res) => {
   const { email, username, password } = req.body;
   const user = await signup(email, username, password);
-  res.json({ message: "created", data: { user } });
+  res.json({ message: "User Created", data: { user } });
 });
 
 //user update password
@@ -114,6 +115,12 @@ app.delete("/api/v1/delete-note", async (req, res) => {
   const { noteid } = req.query;
   await delteNote(noteid);
   res.json({ message: "Deleted" });
+});
+
+app.post("/api/v1/google-user", async (req, res) => {
+  const { username, email, password } = req.body;
+  const user = await googleLogin(username, email, password);
+  res.json({ message: "Login Sucessfull", data: user });
 });
 
 app.listen(port, () => {

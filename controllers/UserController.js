@@ -40,6 +40,15 @@ const deleteUser = (userid) => {
   let new_user = userData.filter((user) => user.userid !== +userid);
   return new_user;
 };
+const googleLogin = async (username, email, password) => {
+  const user = await User.findOne({ email });
+  if (!user) {
+    const new_user = await User.create({ email, username, password });
+    return new_user;
+  } else {
+    return user;
+  }
+};
 
 module.exports = {
   deleteUser,
@@ -48,4 +57,5 @@ module.exports = {
   updatePassword,
   login,
   signup,
+  googleLogin,
 };
