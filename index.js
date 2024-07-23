@@ -4,7 +4,6 @@ const userData = require("./db/UserDb");
 require("./db/DB");
 const cors = require("cors");
 const app = express();
-const { User } = require("./model/User");
 const { Auth } = require("./middleware/Auth");
 app.use(cors());
 app.use(express.json());
@@ -27,7 +26,7 @@ const {
   googleLogin,
 } = require("./controllers/UserController");
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
 //login
 app.post("/api/v1/login", async (req, res) => {
@@ -100,12 +99,12 @@ app.put("/api/v1/update-title", async (req, res) => {
 
 //update title and description
 app.put("/api/v1/update-note", async (req, res) => {
-  const { username, noteid, title, description } = req.body;
+  const { username, noteid, title, decripition } = req.body;
   const new_data = await updateTitleDecripition(
     username,
     noteid,
     title,
-    description
+    decripition
   );
   res.json({ message: "updated", data: { new_data } });
 });
