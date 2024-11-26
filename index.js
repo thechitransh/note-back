@@ -26,7 +26,7 @@ const {
   googleLogin,
 } = require("./controllers/UserController");
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 //login
 app.post("/api/v1/login", async (req, res) => {
@@ -120,6 +120,10 @@ app.post("/api/v1/google-user", async (req, res) => {
   const { username, email, password } = req.body;
   const user = await googleLogin(username, email, password);
   res.json({ message: "Login Sucessfull", data: user });
+});
+
+app.get("/api/v1/active", (req, res) => {
+  res.json({ message: "welcome" });
 });
 
 app.listen(port, () => {
